@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- <h1><p th:text="${message}"></p></h1>-->
+ <p th:text="${user.id}"></p>
+ <p th:text="${user.name}"></p>
+ <p th:text="${user.age}"></p>
+
+ <img th:src="@{1.jpg}" height="200px" width="200px"></br>
+ <img th:src="@{timg.jpg}" height="300px" width="300px">
+
+ <p th:text="${user}"></p>
+ <p th:text="${user1}"></p>
+ <p th:text="${user2}"></p>
+
+
+<table width="500" style="text-align: center;">
+    <tr>
+        <th>编号</th>
+        <th>index</th>
+        <th>count</th>
+        <th>姓名</th>
+        <th>年龄</th>
+
+    </tr>
+    <tr th:each="user,iterStat:${userList}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${iterStat.index}"></td>
+        <td th:text="${iterStat.count}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.age}"></td>
+    </tr>
+</table>
+
+
+  <p th:text="${userName}"></p>
+<!-- 给表单控件的属性赋值 th:value、th:属性名称 -->
+<input type="text" name = "names" th:value="${userName}"/>
+
+<em th:size="${userName}"/>
+
+<!-- 字符串拼接 -->
+<span th:text="'欢迎来:'+${userName}+'学习!'"></span>
+</br>
+<!-- 字符串拼接,方式2 -->
+<span th:text="|欢迎来:${userName}学习!|"></span>
+
+
+
+
+<h1 th:if="${flag=='yes'}">中公教育</h1>
+
+<h1 th:unless="${flag == 'yes'}">优就业</h1>
+
+
+<span th:switch="${menu}">
+    <p th:case="admin">User is an administrator</p>
+    <p th:case="${manager}">User is a manager</p>
+</span>
+
+
+
+
+时间：<p th:text="${#dates.format(date,'yyyy-MM-dd HH:mm:ss')}">4564546</p>
+金额：<p th:text="'￥'+${#numbers.formatDecimal(price,1,2)}">180</p>
+
+<p th:text="${#strings.abbreviate(strText,60)}">内容内容内容</p>
+
+<!-- 判断字符串是否为空 -->
+<span th:if="${!#strings.isEmpty(str2)}">字符串str2不为空</span></br>
+<!-- 截取字符串，指定长度 -->
+<span th:text="${#strings.substring(str2,0,4)}">字符串str2的值</span>
+
+
+
+
+</body>
+</html>
